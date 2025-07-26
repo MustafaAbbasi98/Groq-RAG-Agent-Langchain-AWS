@@ -1,0 +1,16 @@
+# 1) Base image
+FROM python:3.12.10-slim
+
+#Set the working directory to so streamlit can watch this instead of root
+WORKDIR /app 
+
+# 2) Install deps
+COPY requirements-streamlit.txt ./
+RUN pip install --no-cache-dir -r requirements-streamlit.txt
+
+# 3) Copy app
+COPY streamlit_app.py ./
+
+# 4) Expose & run
+EXPOSE 8501
+ENTRYPOINT ["streamlit", "run", "streamlit_app.py", "--server.port", "8501", "--server.address", "0.0.0.0"]
