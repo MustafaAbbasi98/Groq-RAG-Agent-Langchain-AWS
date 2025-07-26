@@ -120,7 +120,7 @@ def create_agent(rag_chain):
     llm = ChatGroq(
         model_name='gemma2-9b-it',
         temperature=0.2,
-        max_completion_tokens=2048,
+        max_tokens=5120,
     )
     
     react_json_prompt = PromptTemplate.from_template(template=react_json_prompt_template)
