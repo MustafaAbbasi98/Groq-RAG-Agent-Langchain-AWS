@@ -1,0 +1,29 @@
+FROM public.ecr.aws/lambda/python:3.12
+
+# switch to root so we can install system packages
+USER root
+
+# update and install build tools + python dev headers via dnf
+RUN dnf update -y \
+ && dnf install -y \
+      gcc \
+      gcc-c++ \
+      make \
+      python3-devel \
+ && dnf clean all
+
+# drop back to the non‑root Lambda user
+# USER sbx_user
+
+# 2) Upgrade pip / wheel / setuptools so you grab prebuilt wheels when possible
+RUN pip install --upgrade pip setuptools wheel
+
+# Install only what you need
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy your code
+COPY rag_chain.py agent.py lambda_function.py ./
+
+# Tell Lambda which handler to invoke
+CMD ["lambda_function.lambda_handler"]
