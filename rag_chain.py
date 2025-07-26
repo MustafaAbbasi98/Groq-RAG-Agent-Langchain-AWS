@@ -74,7 +74,7 @@ def load_chain(pdf_path):
     llm = ChatGroq(
         model_name='llama-3.1-8b-instant',
         temperature=0.6,
-        max_completion_tokens=5120,
+        max_tokens=5120,
     )
     
     rag_chain = (
