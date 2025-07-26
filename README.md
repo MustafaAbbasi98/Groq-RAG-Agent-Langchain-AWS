@@ -8,6 +8,13 @@ The model currently has access to the following tools:
 - Calculator
 - Research (allows you to query your own PDF)
 
+## ⚡ Quick Demo (GIF)
+
+![Quick Demo](assets/short_demo.gif)
+
+## 🎥 Full Walkthrough
+
+[Watch on YouTube](https://youtu.be/fy3xkXskUXU)
 
 ## How it works
 
